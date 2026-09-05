@@ -1,0 +1,13 @@
+# fixowl per-repo config for the e2e sandbox.
+version: 1
+
+# Image the coding agent and the verify check run in (contains node + git +
+# the claude CLI).
+dockerfile: Dockerfile
+
+verify:
+  # Runs in a fresh container after the agent finishes; any failure turns the
+  # PR into a draft. Kept trivial and always-passing on purpose - this sandbox
+  # exercises fixowl's plumbing, not a real toolchain.
+  checks:
+    - { name: ok, run: "echo ok" }
