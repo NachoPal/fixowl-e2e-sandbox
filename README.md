@@ -12,3 +12,4 @@ and everything else is transient test fixtures.
 
 <!-- fixowl-e2e: the agent appends its trivial edits below this line -->
 <!-- HELLO paid-34226598161-1 -->
+<!-- WORLD paid-34226598161-1 -->
