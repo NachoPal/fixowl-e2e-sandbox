@@ -1,6 +1,7 @@
-# Trivial PR CI for the fixowl e2e sandbox. fixowl opens PRs here with a PAT
-# (not the default GITHUB_TOKEN), so this workflow DOES fire, gives the CI gate
-# a real check to wait on, and goes green - flipping the draft PR to ready.
+# Test harness for #54 fix-loop RED path: intentionally fails so fixowl's
+# CI gate sees a red required/completed check on the PR head SHA, feeds the
+# failure back to the agent, retries up to max-ci-tries, and leaves an
+# annotated DRAFT (fixowl never merges). Revert to `echo ok` after the test.
 name: ci
 
 on:
@@ -13,4 +14,6 @@ jobs:
   ok:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ok
+      - run: |
+          echo "::error::intentional red for the #54 fix-loop red-path test"
+          exit 1
