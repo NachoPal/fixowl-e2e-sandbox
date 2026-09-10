@@ -14,3 +14,5 @@ and everything else is transient test fixtures.
 codex smoke test - 2026-09-10
 
 <!-- HELLO free-34530536953-1 -->
+
+<!-- WORLD free-34530536953-1 -->
