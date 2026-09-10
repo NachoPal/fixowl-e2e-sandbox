@@ -47,7 +47,7 @@ jobs:
           source: "${{ github.event.inputs.source }}"
           usage-budget-percent: "85"
           run-budget-minutes: "240"
-          default-model: "gpt-5-codex"
+          default-model: "gpt-5.4-mini"
           default-effort: "low"
         env:
           GITHUB_TOKEN: ${{ github.token }} # Actions: read, for the once-a-day budget guard
