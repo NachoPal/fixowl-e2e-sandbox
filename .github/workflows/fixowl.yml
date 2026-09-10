@@ -3,8 +3,6 @@ name: fixowl
 run-name: "fixowl night run${{ github.event.inputs.source == 'scheduled-fallback' && ' [scheduled-fallback]' || '' }}"
 
 on:
-  schedule:
-    - cron: "37 0 * * *"
   workflow_dispatch:
     inputs:
       source:
@@ -36,29 +34,27 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - uses: NachoPal/fixowl@68b71da84e7c2cd2217a11ecc2e6d1e9f5fbaa15 # main @ 2026-09-09
+      - uses: NachoPal/fixowl@481f396a810d79bac8f542ccee688f9c77b16d12 # main @ 2026-09-10
         with:
           labels-any: "for: agent"
           labels-all: ""
-          agent: claude
-          agent-env: "CLAUDE_CODE_OAUTH_TOKEN"
+          agent: codex
+          agent-env: "OPENAI_API_KEY"
           max-issues-per-run: "3"
-          issue-timeout-minutes: "90"
+          issue-timeout-minutes: "45"
           max-ci-tries: "3"
           ci-timeout-minutes: "60"
           source: "${{ github.event.inputs.source }}"
-          schedule: "37 0 * * *"
-          usage-budget-percent: "90"
+          usage-budget-percent: "85"
           run-budget-minutes: "240"
-          default-model: "sonnet"
-          default-effort: "medium"
-          label-models: "{\"effort: high\":{\"model\":\"sonnet\",\"effort\":\"medium\"}}"
+          default-model: "gpt-5-codex"
+          default-effort: "low"
         env:
           GITHUB_TOKEN: ${{ github.token }} # Actions: read, for the once-a-day budget guard
           FIXOWL_APP_ID: ${{ secrets.FIXOWL_APP_ID }}
           FIXOWL_APP_INSTALLATION_ID: ${{ secrets.FIXOWL_APP_INSTALLATION_ID }}
           FIXOWL_APP_PRIVATE_KEY: ${{ secrets.FIXOWL_APP_PRIVATE_KEY }}
-          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
       # Best-effort combined upload. Per-issue `fixowl-evidence-issue-<n>`
       # artifacts (uploaded progressively as each issue finishes) are the
