@@ -45,7 +45,6 @@ jobs:
           max-ci-tries: "3"
           ci-timeout-minutes: "60"
           source: "${{ github.event.inputs.source }}"
-          usage-budget-percent: "85"
           run-budget-minutes: "240"
           default-model: "gpt-5.4-mini"
           default-effort: "low"
