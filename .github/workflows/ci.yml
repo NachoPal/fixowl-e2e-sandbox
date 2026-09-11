@@ -14,4 +14,4 @@ jobs:
   ok:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ok
+      - run: test ! -f .ci-fail
