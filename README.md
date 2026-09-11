@@ -12,3 +12,5 @@ and everything else is transient test fixtures.
 
 <!-- fixowl-e2e: the agent appends its trivial edits below this line -->
 codex smoke test - 2026-09-10
+
+<!-- CAP free-34595257551-1-cap #3 -->
