@@ -1,7 +1,12 @@
 # Trivial PR CI for the fixowl e2e sandbox. fixowl opens PRs here with the
-# GitHub App (not the default GITHUB_TOKEN), so this workflow DOES fire, gives
-# the CI gate a real check to wait on, and goes green - flipping the draft PR
-# to ready.
+# GitHub App (not the default GITHUB_TOKEN), so this workflow DOES fire and gives
+# the CI gate a real check to wait on. It checks out the PR's merge ref and fails
+# only when a `.ci-fail` marker file is present in the tree - so a normal fixowl
+# PR goes green (flipping the draft to ready), and the red-then-green scenario,
+# whose script body creates `.ci-fail` on attempt 1 and removes it on the retry,
+# gets a real red check to recover from. Without the checkout the marker would
+# never be on disk and the check would be vacuously green (the bug behind the
+# red-green E2E scenario failing in fixowl run 34582938659).
 name: ci
 
 on:
@@ -14,4 +19,7 @@ jobs:
   ok:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
       - run: test ! -f .ci-fail
