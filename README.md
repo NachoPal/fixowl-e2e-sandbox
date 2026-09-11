@@ -12,3 +12,5 @@ and everything else is transient test fixtures.
 
 <!-- fixowl-e2e: the agent appends its trivial edits below this line -->
 codex smoke test - 2026-09-10
+
+<!-- ORPHAN free-34582938659-1-orphan-and-foreign -->
