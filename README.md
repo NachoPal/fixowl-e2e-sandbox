@@ -13,3 +13,5 @@ and everything else is transient test fixtures.
 <!-- fixowl-e2e: the agent appends its trivial edits below this line -->
 codex smoke test - 2026-09-10
 codex smoke test 2 - 2026-09-10
+
+<!-- LAYER2 free-35768735955-1-layer2-off #2 -->
